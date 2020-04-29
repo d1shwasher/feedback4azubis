@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>Feedback4Azubis</title>
+        
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        
+        <!-- Bootstrap css -->
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap js -->
+        <script src="bootstrap.min.js"></script>
+        
+        <style type="text/css">
+            
+            body{            
+            padding-top:50px;
+            position:relative;
+            }
+            
+            #patternFoot {
+                float:right;
+            }
+            
+            #cbLike {
+                visibility:hidden;
+            }
+            
+            #lbLike {
+                padding:5px 10px 5px 40px;
+                background-image:url(bilder/thumbs_up_black.png);
+                background-repeat:no-repeat;
+                background-position:left;
+                background-size:30px;
+                border:1px solid lightgray;
+                border-radius:4px;
+            }
+            
+            #lbAlertTitel {
+                display:none;
+            }
+            
+            #lbAlertFeedback {
+                display:none;
+            }
+            
+        </style>
+        
+    </head>
+    <body>
+        
+        <!--Navigationsleiste-->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container" id="navBar">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Navigation ein-/ausblenden</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Feedback4Azubis</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" role="tablist">
+                        <li class="active"><a href="#">Übersicht</a></li>
+                        <li><a href="#">Auswertung</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!--Modal für Feedback-Eingabe-->
+        <div class="modal fade" id="getFeedback" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Schließen"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalLabel">Gib uns dein Feedback</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <div class="alert alert-danger" role="alert" id="lbAlertTitel">Bitte gib einen Titel ein.</div>
+                                <label for="tbTitel">Titel:</label>
+                                <input type="text" class="form-control" id="tbTitel" placeholder="Darum geht es..."> 
+                            </div>
+                            <div class="form-group">
+                                <div class="alert alert-danger" role="alert" id="lbAlertFeedback">Bitte gib ein Feedback ein.</div>
+                                <label for="tbFeedback">Feedback:</label>
+                                <textarea class="form-control" rows="8" id="tbFeedback" placeholder="Gib hier dein Feedback ein"></textarea>
+                                <br>
+                                <button type="button" class="btn btn-primary" id="btSenden">Senden</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--Jumbotron für Feedback-Modal-->
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Gib uns dein Feedback</h1>
+                <p>Fragestellung: Wie geht's dir heute? Was lief heute gut? Worüber sollten wir sprechen?...</p>
+                <p><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#getFeedback">Feedback geben</button></p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row" id="feedbackPinwand">
+                
+                <!--Beispiel Feedback-Pattern-->
+                <div class="col-sm-4 col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Feedback-Titel</div>
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>
+                            <div id="patternFoot">
+                                <input type="checkbox" id="cbLike">
+                                <label class="lbLike" for="cbLike" id="lbLike">0</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Beispiel Feedback-Pattern-->
+                <div class="col-sm-4 col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Feedback-Titel</div>
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,</p>
+                            <div id="patternFoot">
+                                <input type="checkbox" id="cbLike">
+                                <label class="lbLike" for="cbLike" id="lbLike">0</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Beispiel Feedback-Pattern-->
+                <div class="col-sm-4 col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Feedback-Titel</div>
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>
+                            <div id="patternFoot">
+                                <input type="checkbox" id="cbLike">
+                                <label class="lbLike" for="cbLike" id="lbLike">0</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Beispiel Feedback-Pattern-->
+                <div class="col-sm-4 col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Feedback-Titel</div>
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+                            <div id="patternFoot">
+                                <input type="checkbox" id="cbLike">
+                                <label class="lbLike" for="cbLike" id="lbLike">0</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Beispiel Feedback-Pattern-->
+                <div class="col-sm-4 col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Feedback-Titel</div>
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+                            <div id="patternFoot">
+                                <input type="checkbox" id="cbLike">
+                                <label class="lbLike" for="cbLike" id="lbLike">0</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    
+        <script>    
+            
+            $(".lbLike").click(function(){
+                if($(this).css("background-color")=="rgba(0, 0, 0, 0)"){
+                    $(this).html(parseInt($(this).html())+1);
+                    $(this).css("background-color", "green");
+                    $(this).css("background-image", "url(bilder/thumbs_up_white.png)");
+                    $(this).css("color", "white");
+                }
+                else {
+                    $(this).html(parseInt($(this).html())-1);
+                    $(this).css("background-color", "rgba(0, 0, 0, 0)");
+                    $(this).css("background-image", "url(bilder/thumbs_up_black.png)");
+                    $(this).css("color", "black");
+                }
+            });
+            
+            $("#btSenden").click(function(){
+                var newPanel;
+                
+                newPanel='<div class="col-sm-4 col-md-3"><div class="panel panel-default"><div class="panel-heading">' + $("#tbTitel").val() + '</div><div class="panel-body"><p>' + $('#tbFeedback').val() + '</p><div id="patternFoot"><input type="checkbox" id="cbLike" onclick="getName()"><label class="lbLike" for="cbLike" id="lbLike">0</label></div></div></div></div>';
+                
+                if($("#tbTitel").val()=="") {
+                    $("#lbAlertTitel").css("display","block");
+                    $("#lbAlertFeedback").css("display","none");
+                }
+                else if($("#tbFeedback").val()==""){
+                    $("#lbAlertFeedback").css("display","block");
+                    $("#lbAlertTitel").css("display","none");
+                }
+                else{
+                    $("#feedbackPinwand").append(newPanel);
+                    $("#getFeedback").modal("toggle");
+                    $("#lbAlertTitel").css("display","none");
+                    $("#lbAlertFeedback").css("display","none");
+                }                
+            });
+            
+        </script>
+    </body>
+</html>
